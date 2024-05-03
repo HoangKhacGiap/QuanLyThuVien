@@ -1,6 +1,7 @@
 package com.example.data.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,20 +13,20 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "PhieuMuon")
-public class phieuMuon {
+public class PhieuMuon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long phieuMuon_id;
+    private long id;
 
-    @Column(name = "ngayMuon", columnDefinition = "NVARCHAR(250)", nullable = false, unique = true)
+    @Column(name = "ngayMuon")
     private Date ngayMuon;
 
-    @Column(name = "hanMuon", columnDefinition = "NVARCHAR(250)", nullable = false, unique = true)
+    @Column(name = "hanMuon")
     private Date hanMuon;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "nguoiDung_id", nullable = false)
-    private nguoiDung nguoiXacNhanPhieuMuon;
+    private NguoiDung nguoiXacNhanPhieuMuon;
 
     private boolean xacNhanMuon = false;
 

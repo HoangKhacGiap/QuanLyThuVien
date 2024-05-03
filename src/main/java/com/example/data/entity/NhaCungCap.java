@@ -1,7 +1,7 @@
 package com.example.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import javax.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,15 +11,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "NhaCungCap")
-public class nhaCungCap {
+public class NhaCungCap {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long nhaCungCap_id;
+    private long id;
 
-    @Column(name = "tenNhaCungCap", columnDefinition = "NVARCHAR(250)", nullable = false, unique = true)
+    @Column(name = "tenNhaCungCap", columnDefinition = "NVARCHAR(250)", nullable = false)
     private String tenNhaCungCap;
 
-    @Column(name = "diaChi", columnDefinition = "NVARCHAR(250)", nullable = false, unique = true)
+    @Column(name = "diaChi", columnDefinition = "NVARCHAR(250)", nullable = false)
     private String diaChi;
 
     @Column(name = "dienThoai", columnDefinition = "NVARCHAR(250)", nullable = false, unique = true)

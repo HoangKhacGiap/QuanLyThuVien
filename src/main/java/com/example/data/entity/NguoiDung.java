@@ -1,6 +1,7 @@
 package com.example.data.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,18 +12,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "NguoiDung")
-public class nguoiDung {
+public class NguoiDung {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long nguoiDung_id;
+    private Long id;
 
-    @Column(name = "tenNguoiDung", columnDefinition = "NVARCHAR(250)", nullable = false)
+    @Column(name = "tenNguoiDung", columnDefinition = "NVARCHAR(250)")
     private String tenNguoiDung;
 
-    @Column(name = "diaChi", columnDefinition = "NVARCHAR(250)", nullable = false)
+    @Column(name = "diaChi", columnDefinition = "NVARCHAR(250)")
     private String diaChi;
 
-    @Column(name = "dienThoai", columnDefinition = "NVARCHAR(250)", nullable = false)
+    @Column(name = "dienThoai", columnDefinition = "NVARCHAR(250)")
     private String dienThoai;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
@@ -31,5 +32,5 @@ public class nguoiDung {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "taiKhoan_id", nullable = false)
-    private taiKhoan taiKhoan;
+    private TaiKhoan taiKhoan;
 }

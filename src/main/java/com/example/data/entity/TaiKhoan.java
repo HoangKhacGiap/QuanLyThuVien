@@ -1,20 +1,23 @@
 package com.example.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "TaiKhoan")
-public class taiKhoan {
+public class TaiKhoan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long taiKhoan_id;
+    private long id;
 
     @Column(name = "tenDangNhap", columnDefinition = "NVARCHAR(250)", nullable = false, unique = true)
     private String tenDangNhap;
@@ -28,7 +31,7 @@ public class taiKhoan {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "phanQuyen_id", nullable = false)
-    private phanQuyen phanQuyen;
+    private PhanQuyen phanQuyen;
 
     private boolean xacNhanXoa = false;
 }

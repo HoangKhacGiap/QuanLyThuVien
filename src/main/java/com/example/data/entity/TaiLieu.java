@@ -1,6 +1,7 @@
 package com.example.data.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,13 +11,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "TaiLieu")
-public class taiLieu {
+public class TaiLieu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long taiLieu_id;
+    private Long id;
 
-    @Column(name = "tenNguoiDung", columnDefinition = "NVARCHAR(250)", nullable = false)
-    private String tenNguoiDung;
+    @Column(name = "tenTaiLieu", columnDefinition = "NVARCHAR(250)", nullable = false)
+    private String tenTaiLieu;
 
     @Column(name = "tenTacGia", columnDefinition = "NVARCHAR(250)", nullable = false)
     private String tenTacGia;
@@ -33,7 +34,7 @@ public class taiLieu {
     @Column(name = "noiDung", columnDefinition = "NVARCHAR(2048)", nullable = false)
     private String noiDung;
 
-    @Column(name = "soLuongTon", columnDefinition = "INT", nullable = false)
+    @Column(name = "soLuongTon", nullable = false)
     private int soLuongTon;
 
     @Column(name = "hinhAnhDaiDien", columnDefinition = "NVARCHAR(250)", nullable = false)

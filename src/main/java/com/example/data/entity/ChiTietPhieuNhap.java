@@ -1,32 +1,31 @@
 package com.example.data.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Date;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "ChiTietPhieuNhap")
-public class chiTietPhieuNhap {
+public class ChiTietPhieuNhap {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long chitietPhieuNhap_id;
+    private long id;
 
-    @Column(name = "soLuongNhap", columnDefinition = "INT", nullable = false)
+    @Column(name = "soLuongNhap", nullable = false)
     private int soLuongNhap;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "taiLieu_id", nullable = false)
-    private taiLieu taiLieu;
+    private TaiLieu taiLieu;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "phieuNhap_id", nullable = false)
-    private phieuNhap phieuNhap;
+    private PhieuNhap phieuNhap;
 
 //    private boolean xacNhanXoa = false;
 }

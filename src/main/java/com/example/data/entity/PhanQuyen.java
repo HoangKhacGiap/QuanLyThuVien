@@ -1,7 +1,6 @@
 package com.example.data.entity;
 
-import jakarta.persistence.*;
-
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "PhanQuyen")
-public class phanQuyen {
+public class PhanQuyen {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
