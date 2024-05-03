@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface NhaCungCapRepository extends JpaRepository<NhaCungCap,Long> {
     Optional<NhaCungCap> findByEmail(String email);
-
+    Optional<NhaCungCap> findByDienThoai(String dienThoai);
     Boolean existsByEmail(String email);
 }

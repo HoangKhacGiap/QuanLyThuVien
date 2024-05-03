@@ -90,9 +90,8 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
             throw new ResourceNotFoundException(Collections.singletonMap("message", "admin access not allow"));
         } else if (registerDTO.getPhanQuyenId() == ERole.roleLibrary_manager) {
             throw new ResourceNotFoundException(Collections.singletonMap("message", "library manager access not allow"));
-        } else if(registerDTO.getEmail()==null || registerDTO.getTenDangNhap()==null || registerDTO.getPassword()==null)
-            throw new ExceptionCustom("Ban chua nhap day du thong tin");
-        {
+        }
+        else {
 
             PhanQuyen phanQuyen = phanQuyenRepository.findById(registerDTO.getPhanQuyenId()).orElseThrow(
                     () -> new ResourceNotFoundException(Collections.singletonMap("message", "role do not exist"))
