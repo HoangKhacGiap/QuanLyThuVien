@@ -30,7 +30,7 @@ public class NguoiDung {
 //    @JoinColumn(name = "class_id")
 //    private StudentClass studentClass;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "taiKhoan_id", nullable = false)
     private TaiKhoan taiKhoan;
 }

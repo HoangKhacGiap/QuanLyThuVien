@@ -11,13 +11,21 @@ import javax.validation.Valid;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/createNhaCungCap")
+@RequestMapping("/api")
 public class NhaCungCapController {
     @Autowired
     private NhaCungCapService nhaCungCapService;
 
-    @PostMapping("")
+    @PostMapping("/createNhaCungCap")
     public ResponseEntity<?> registerUser(@Valid @RequestBody NhaCungCapDTO nhaCungCapDTO) {
         return ResponseEntity.ok(nhaCungCapService.createNhaCungCap(nhaCungCapDTO));
+    }
+
+    @GetMapping("/filterNhaCungCap")
+    public ResponseEntity<?> filterNhaCungCap(@RequestParam(defaultValue = "0") int pageNumber,
+                                             @RequestParam(defaultValue = "10") int pageSize,
+                                             @RequestParam(defaultValue = "") String keyword) {
+
+        return ResponseEntity.ok(nhaCungCapService.filterNhaCungCap(keyword, pageNumber, pageSize));
     }
 }

@@ -1,9 +1,6 @@
 package com.example.service.impl;
 
-import com.example.data.dto.JwtResponseDTO;
-import com.example.data.dto.LoginDTO;
-import com.example.data.dto.MessageResponse;
-import com.example.data.dto.RegisterDTO;
+import com.example.data.dto.*;
 import com.example.data.entity.NguoiDung;
 import com.example.data.entity.PhanQuyen;
 import com.example.data.entity.TaiKhoan;
@@ -18,6 +15,8 @@ import com.example.exception.ResourceNotFoundException;
 import com.example.service.JwtService;
 import com.example.service.TaiKhoanService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -27,7 +26,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 @Service
 public class TaiKhoanServiceImpl implements TaiKhoanService {
@@ -118,6 +119,8 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
         }
         return new MessageResponse(HttpServletResponse.SC_OK, "Tao user thanh cong");
     }
+
+
 
     private Boolean checkValidPassword(String password, String passwordEncoded) {
 

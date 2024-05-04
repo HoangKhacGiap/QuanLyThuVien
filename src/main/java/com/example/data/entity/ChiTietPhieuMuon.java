@@ -15,9 +15,6 @@ public class ChiTietPhieuMuon {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "soLuongNhap", nullable = false)
-    private int soLuongNhap;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "taiLieu_id", nullable = false)
     private TaiLieu taiLieu;
