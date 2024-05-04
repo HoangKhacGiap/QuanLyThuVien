@@ -11,6 +11,7 @@ import com.example.data.mapper.TaiLieuMapper;
 import com.example.data.repository.NhaCungCapRepository;
 import com.example.data.repository.TaiLieuRepository;
 import com.example.exception.ConflictException;
+import com.example.exception.ResourceNotFoundException;
 import com.example.service.TaiLieuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -60,5 +61,16 @@ public class TaiLieuServiceImpl implements TaiLieuService {
         return new PaginationDTO(list, page.isFirst(), page.isLast(),
                 page.getTotalPages(), page.getTotalElements(), page.getNumber(), page.getSize());
 
+    }
+
+    @Override
+    public TaiLieuDTO findTaiLieuById(long id) {
+        TaiLieu taiLieu = taiLieuRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException(Collections.singletonMap("exam id:", id))
+        );
+
+        TaiLieuDTO taiLieuDTO = taiLieuMapper.toDTO(taiLieu);
+
+        return taiLieuDTO;
     }
 }

@@ -9,4 +9,6 @@ public interface TaiLieuService {
 
     PaginationDTO filterTaiLieu(String keyword, int pageNumber, int pageSize);
 
+    TaiLieuDTO findTaiLieuById(long id);
+
 }

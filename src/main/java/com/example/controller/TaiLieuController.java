@@ -27,4 +27,10 @@ public class TaiLieuController {
 
         return ResponseEntity.ok(taiLieuService.filterTaiLieu(keyword, pageNumber, pageSize));
     }
+
+    @GetMapping("/taiLieu_id={id}")
+    public ResponseEntity<?> findExamById(@PathVariable long id) {
+
+        return ResponseEntity.ok(taiLieuService.findTaiLieuById(id));
+    }
 }
