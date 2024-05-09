@@ -97,7 +97,7 @@ public class PhieuMuonServiceImpl implements PhieuMuonService {
                 () -> new ResourceNotFoundException(Collections.singletonMap("phieuMuonId: ", phieuMuonId))
         );
         if(phieuMuon.isXacNhanMuon()){
-            throw new ExceptionCustom("Phiếu này đã xác nhận rồi!!!");
+            throw new ExceptionCustom(  "Phiếu này đã xác nhận rồi!!!");
         }
         Date currentDate = new Date();
 
