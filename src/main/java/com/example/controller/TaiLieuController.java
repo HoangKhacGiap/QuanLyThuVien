@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import com.example.data.dto.ChiTietPhieuMuonDTO;
+import com.example.data.dto.PhieuMuonDTO;
 import com.example.data.dto.TaiLieuDTO;
 import com.example.service.TaiLieuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,12 @@ public class TaiLieuController {
     @PostMapping("/createTaiLieu")
     public ResponseEntity<?> registerUser(@Valid @RequestBody TaiLieuDTO taiLieuDTO) {
         return ResponseEntity.ok(taiLieuService.createTaiLieu(taiLieuDTO));
+    }
+
+    @PostMapping("/addTaiLieutoPhieuMuon")
+    public ResponseEntity<?> addtaiLieutoPhieuMuon(@RequestParam long phieuMuonId,
+                                                   @RequestParam long taiLieuId) {
+        return ResponseEntity.ok(taiLieuService.addTaiLieutoPhieuMuon(phieuMuonId,taiLieuId));
     }
 
     @GetMapping("/filterTaiLieu")
