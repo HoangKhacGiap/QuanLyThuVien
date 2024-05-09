@@ -21,7 +21,7 @@ public class NguoiDungController {
 
     @SecurityRequirement(name = "Bearer Authentication")
     @PutMapping("/updateNguoiDung")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody NguoiDungDTO nguoiDungDTO) {
+    public ResponseEntity<?> updateNguoiDung(@Valid @RequestBody NguoiDungDTO nguoiDungDTO) {
         return ResponseEntity.ok(nguoiDungService.updateNguoiDung(nguoiDungDTO));
     }
 

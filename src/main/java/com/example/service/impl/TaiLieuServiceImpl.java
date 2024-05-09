@@ -68,12 +68,15 @@ public class TaiLieuServiceImpl implements TaiLieuService {
         NguoiDung nguoiDung = getNguoiDungByToken();
         if(nguoiDung.getTaiKhoan().getPhanQuyen().getId() == ERole.roleStudent
                 && phieuMuonRepository.countByTaiLieuMuon(nguoiDung.getId()) >= 2){
-            throw new ExceptionCustom("sinh vien chi duoc muon 2 tai lieu");
+            throw new ExceptionCustom("sinh viên chỉ được mượn tối đa 2 tài liệu");
         }
 
         if(nguoiDung.getTaiKhoan().getPhanQuyen().getId() == ERole.roleLecture
                 && phieuMuonRepository.countByTaiLieuMuon(nguoiDung.getId()) >= 5){
-            throw new ExceptionCustom("giang vien chi duoc muon 5 tai lieu");
+            throw new ExceptionCustom("giảng viên chỉ được mượn tối đa 5 tài liệu");
+        }
+        if(nguoiDung.getId()!= phieuMuon.getNguoiXacNhanPhieuMuon().getId()){
+            throw new ExceptionCustom("đây không phải phiếu mượn của bạn!!!");
         }
 
             ChiTietPhieuMuon createChiTietPhieuMuon = new ChiTietPhieuMuon();

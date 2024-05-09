@@ -8,11 +8,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface PhieuMuonRepository extends JpaRepository<PhieuMuon,Long> {
     Optional<PhieuMuon> findById(long id);
-    Optional<PhieuMuon> findByNguoiXacNhanPhieuMuon_Id(long id);
+    List<PhieuMuon> findByNguoiXacNhanPhieuMuon_Id(long id);
 
     @Query("select count(*) from PhieuMuon  " +
             "where nguoiXacNhanPhieuMuon.id =:codeInput " +

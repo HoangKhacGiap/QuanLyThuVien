@@ -1,9 +1,11 @@
 package com.example.controller;
 
+import com.example.data.dto.NguoiDungDTO;
 import com.example.data.dto.PhieuMuonDTO;
 import com.example.data.dto.TaiLieuDTO;
 import com.example.data.repository.PhieuMuonRepository;
 import com.example.service.PhieuMuonService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -29,5 +31,17 @@ public class PhieuMuonController {
     @PostMapping("/addPhieuMuon")
     public ResponseEntity<?> addPhieuMuon(@Valid PhieuMuonDTO phieuMuonDTO) {
         return ResponseEntity.ok(phieuMuonService.addPhieuMuon());
+    }
+
+    @GetMapping("/getPhieuMuonAuthentication")
+    public ResponseEntity<?> findPhieuMuonByAuthentication() {
+
+        return ResponseEntity.ok(phieuMuonService.findPhieuMuonByAuthentication());
+    }
+
+//    @SecurityRequirement(name = "Bearer Authentication")
+    @PutMapping("/xacNhanPhieuMuon/phieuMuonId={id}")
+    public ResponseEntity<?> xacNhanPhieuMuon( @PathVariable Long id) {
+        return ResponseEntity.ok(phieuMuonService.updateXacNhanPhieuMuon(id));
     }
 }
