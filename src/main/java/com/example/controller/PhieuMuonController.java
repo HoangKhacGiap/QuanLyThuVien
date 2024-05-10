@@ -41,7 +41,7 @@ public class PhieuMuonController {
 
 //    @SecurityRequirement(name = "Bearer Authentication")
     @PutMapping("/xacNhanPhieuMuon/phieuMuonId={id}")
-    public ResponseEntity<?> xacNhanPhieuMuon( @PathVariable Long id) {
+    public ResponseEntity<?> xacNhanPhieuMuon(@PathVariable Long id) {
         return ResponseEntity.ok(phieuMuonService.updateXacNhanPhieuMuon(id));
     }
 }
