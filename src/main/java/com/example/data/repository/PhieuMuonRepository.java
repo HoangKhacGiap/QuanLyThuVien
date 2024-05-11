@@ -41,4 +41,20 @@ public interface PhieuMuonRepository extends JpaRepository<PhieuMuon,Long> {
             "where pm.nguoiXacNhanPhieuMuon.id =:codeInput " +
             "and pm.xacNhanMuon=false")
     int countByTaiLieuMuon(long codeInput);
+
+
+
+    @Query("select pm from PhieuMuon pm " +
+            "join NguoiDung n on pm.nguoiXacNhanPhieuMuon.id = n.id " +
+            "where " +
+            "(:keyword = '' " +
+            "OR  n.tenNguoiDung LIKE %:keyword% )" +
+//            "OR  tl.tenTacGia LIKE %:keyword% " +
+//            "OR  tl.nhaXuatBan LIKE %:keyword% " +
+//            "OR  tl.ngonNgu LIKE %:keyword% " +
+//            "OR  tl.theLoai LIKE %:keyword%) " +
+//            "AND pm.xacNhanXoa = false " +
+            "ORDER BY pm.id DESC")
+    Page<PhieuMuon> filterPhieuMuonChuaTra(@Param("keyword") String keyword, Pageable pageable);
+
 }
