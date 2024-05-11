@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface PhieuMuonService {
     PaginationDTO filterPhieuMuon(String keyword, int pageNumber, int pageSize);
+    PaginationDTO filterPhieuMuonChuaTra(String keyword, int pageNumber, int pageSize);
+
     MessageResponse addPhieuMuon();
 
     List<PhieuMuonDTO> findPhieuMuonByAuthentication();

@@ -21,11 +21,18 @@ public class PhieuMuonController {
     private PhieuMuonService phieuMuonService;
 
     @GetMapping("/filterPhieuMuon")
-    public ResponseEntity<?> filterNguoiDung(@RequestParam(defaultValue = "0") int pageNumber,
+    public ResponseEntity<?> filterPhieuMuon(@RequestParam(defaultValue = "0") int pageNumber,
                                              @RequestParam(defaultValue = "10") int pageSize,
                                              @RequestParam(defaultValue = "") String keyword) {
 
         return ResponseEntity.ok(phieuMuonService.filterPhieuMuon(keyword, pageNumber,pageSize));
+    }
+    @GetMapping("/filterPhieuMuonChuaTra")
+    public ResponseEntity<?> filterPhieuMuonChuaTraSach(@RequestParam(defaultValue = "0") int pageNumber,
+                                             @RequestParam(defaultValue = "10") int pageSize,
+                                             @RequestParam(defaultValue = "") String keyword) {
+
+        return ResponseEntity.ok(phieuMuonService.filterPhieuMuonChuaTra(keyword, pageNumber,pageSize));
     }
 
     @PostMapping("/addPhieuMuon")
@@ -41,7 +48,7 @@ public class PhieuMuonController {
 
 //    @SecurityRequirement(name = "Bearer Authentication")
     @PutMapping("/xacNhanPhieuMuon/phieuMuonId={id}")
-    public ResponseEntity<?> xacNhanPhieuMuon( @PathVariable Long id) {
+    public ResponseEntity<?> xacNhanPhieuMuon(@PathVariable Long id) {
         return ResponseEntity.ok(phieuMuonService.updateXacNhanPhieuMuon(id));
     }
 }

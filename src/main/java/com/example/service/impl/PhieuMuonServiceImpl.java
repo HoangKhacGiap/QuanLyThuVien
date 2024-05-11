@@ -6,10 +6,7 @@ import com.example.data.entity.PhieuMuon;
 import com.example.data.entity.TaiKhoan;
 import com.example.data.entity.TaiLieu;
 import com.example.data.mapper.PhieuMuonNguoiDungMapper;
-import com.example.data.repository.NguoiDungRepository;
-import com.example.data.repository.PhieuMuonRepository;
-import com.example.data.repository.TaiKhoanRepository;
-import com.example.data.repository.TaiLieuRepository;
+import com.example.data.repository.*;
 import com.example.enumeration.ERole;
 import com.example.exception.ConflictException;
 import com.example.exception.ExceptionCustom;
@@ -38,6 +35,8 @@ public class PhieuMuonServiceImpl implements PhieuMuonService {
     private NguoiDungRepository nguoiDungRepository;
     @Autowired
     private TaiKhoanRepository taiKhoanRepository;
+    @Autowired
+    private PhieuTraSachRepository phieuTraSachRepository;
     @Override
     public PaginationDTO filterPhieuMuon(String keyword, int pageNumber, int pageSize) {
         Page<PhieuMuon> page = phieuMuonRepository.filterPhieuMuon(keyword, PageRequest.of(pageNumber, pageSize));
@@ -48,6 +47,23 @@ public class PhieuMuonServiceImpl implements PhieuMuonService {
             PhieuMuonDTO phieuMuonDTO = phieuMuonNguoiDungMapper.toDTO(pm);
 //            phieuMuonDTO.setTenNguoiMuon(pm.getNguoiXacNhanPhieuMuon().getTenNguoiDung());
             list.add(phieuMuonDTO);
+        }
+
+        return new PaginationDTO(list, page.isFirst(), page.isLast(),
+                page.getTotalPages(), page.getTotalElements(), page.getNumber(), page.getSize());
+
+    }
+
+    @Override
+    public PaginationDTO filterPhieuMuonChuaTra(String keyword, int pageNumber, int pageSize) {
+        Page<PhieuMuon> page = phieuMuonRepository.filterPhieuMuonChuaTra(keyword, PageRequest.of(pageNumber, pageSize));
+        List<PhieuMuonDTO> list = new ArrayList<>();
+
+        for (PhieuMuon pm : page.getContent()) {
+            if(!phieuTraSachRepository.existsByPhieuMuon_Id(pm.getId())) {
+                PhieuMuonDTO phieuMuonDTO = phieuMuonNguoiDungMapper.toDTO(pm);
+                list.add(phieuMuonDTO);
+            }
         }
 
         return new PaginationDTO(list, page.isFirst(), page.isLast(),
